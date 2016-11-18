@@ -14,6 +14,7 @@ function alp {
 
 compctl -K agp asp alp
 
-completer="/usr/local/aws/bin/aws_bash_completer"
+completer="/usr/local/aws/bin/aws_zsh_completer.sh"
 [ -x $completer ] && source $completer
-unset completer
+
+export PATH=$PATH:/usr/local/aws/bin
