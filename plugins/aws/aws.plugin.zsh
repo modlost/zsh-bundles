@@ -9,12 +9,10 @@ function asp {
 }
 
 function alp {
-  grep profile $AWS_HOME/config|sed -e 's/.*profile \([a-zA-Z0-9_-]*\).*/\1/'
+  grep profile ~/.aws/config | sed -e 's/\[profile \(.*\)\]/\1/g'
 }
 
 compctl -K agp asp alp
 
 completer="/usr/local/aws/bin/aws_zsh_completer.sh"
 [ -x $completer ] && source $completer
-
-export PATH=$PATH:/usr/local/aws/bin
