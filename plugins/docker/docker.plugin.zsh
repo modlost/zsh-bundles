@@ -28,7 +28,7 @@ function docker-clean-nones {
 
 function docker-clean-all {
   docker-clean-containers
-  docker-clean-images
+  docker-clean-nones
 }
 
 compctl -K docker-clean-all docker-clean-containers docker-clean-nones
