@@ -15,7 +15,7 @@
 # limitations under the License.
 
 function docker-clean-containers {
-  docker ps -a -q | while read none; do
+  docker ps -a -q | while read containers; do
     docker rm -f $containers
   done
 }
