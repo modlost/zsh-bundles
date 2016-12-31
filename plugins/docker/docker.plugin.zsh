@@ -14,21 +14,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export AWS_HOME=~/.aws
-
-function aws-profile-active {
-  echo $AWS_DEFAULT_PROFILE
+function docker-clean-containers {
+  docker ps -a -q | while read none; do
+    docker rm -f $containers
+  done
 }
 
-function aws-profile-set {
-  export AWS_DEFAULT_PROFILE=$1
+function docker-clean-nones {
+  docker images | grep '^<none>' | awk '{print $3}' | while read none; do
+    docker rmi -f $none
+  done
 }
 
-function aws-profile-list {
-  grep profile ~/.aws/config | sed -e 's/\[profile \(.*\)\]/\1/g'
+function docker-clean-all {
+  docker-clean-containers
+  docker-clean-images
 }
 
-compctl -K aws-profile-active aws-profile-set aws-profile-list
-
-completer="/usr/local/aws/bin/aws_zsh_completer.sh"
-[ -x $completer ] && source $completer
+compctl -K docker-clean-all docker-clean-containers docker-clean-nones
