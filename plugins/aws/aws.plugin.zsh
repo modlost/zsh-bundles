@@ -15,6 +15,11 @@
 # limitations under the License.
 
 export AWS_HOME=~/.aws
+export PATH=/usr/local/aws/bin:$PATH
+
+if [ -n "$CONTEXT" ]; then
+  export AWS_DEFAULT_PROFILE=$CONTEXT  
+fi
 
 function aws-profile-active {
   echo $AWS_DEFAULT_PROFILE
